@@ -21,7 +21,7 @@ let selectSort={
     //总价排序
     price:1,
     //房屋信息是否拆分
-    info:1
+    info:0
 }
 let pg=1;
 const getUrl=(pg)=>{
