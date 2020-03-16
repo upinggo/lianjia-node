@@ -1,6 +1,7 @@
 console.log(`${new Date()}的链家徐汇滨江的数据`)
 // let url='https://sh.lianjia.com/ershoufang/xuhuibinjiang/ie2/';
 const https=require('https');
+const selectSort=require('./selectSort.config.js')
 const cheerio=require('cheerio')
 const fs=require('fs')
 const getResult=(obj,reslutNum,pg)=>{
@@ -16,12 +17,6 @@ const getResult=(obj,reslutNum,pg)=>{
         }
     }
     return res+`所在页数${pg}\r\n`;
-}
-let selectSort={
-    //总价排序
-    price:1,
-    //房屋信息是否拆分
-    info:0
 }
 let pg=1;
 const getUrl=(pg)=>{
@@ -84,9 +79,12 @@ const getEach=(p,callback)=>{
 }    
 const continueGet=(result,total)=>{
     if(result.length===total||result>total){
+        const date=new Date();
+        const time=`${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
         console.log(result,result.length)
+        result.unshift(`${time}:一共${total}套\r\n`)
         console.log(`数据采集完成,共${total}套`);
-        let name=`房子${!selectSort.info?'含信息':''}-${(new Date).toDateString()}`
+        let name=`房子${!selectSort.info?'含信息':''}-${time}`
         if(selectSort.price){
             result.sort((a,b)=>a.split(',')[1]-b.split(',')[1])
             name=`总价排序-`+name
