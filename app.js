@@ -20,7 +20,7 @@ const getResult=(obj,reslutNum,pg)=>{
 }
 let pg=1;
 const getUrl=(pg)=>{
-    return `https://sh.lianjia.com/ershoufang/xuhui/pg${pg}f2f5l2l3ba80ea200bp0ep600/`
+    return `https://sh.lianjia.com/ershoufang/xuhui/${!selectSort.all?`pg${pg}f2f5l2l3ba80ea200bp0ep600`:`${pg===1?'':'pg'+pg}`}/`
 }
 //总数
 let total=0;
@@ -88,6 +88,9 @@ const continueGet=(result,total)=>{
         if(selectSort.price){
             result.sort((a,b)=>a.split(',')[1]-b.split(',')[1])
             name=`总价排序-`+name
+        }
+        if(selectSort.all){
+            name='all-'+time
         }
         fs.writeFile(`./`+name+'.txt',result.join(''),'utf8',function(err){
             //如果err=null，表示文件使用成功，否则，表示文件失败
