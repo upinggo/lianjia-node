@@ -84,6 +84,7 @@ const continueGet=(result,total)=>{
         console.log(result,result.length)
         result.unshift(`${time}:一共${total}套\r\n`)
         console.log(`数据采集完成,共${total}套`);
+        console.log(selectSort.info)
         let name=`房子${!selectSort.info?'含信息':''}-${time}`
         if(selectSort.price){
             result.sort((a,b)=>a.split(',')[1]-b.split(',')[1])
