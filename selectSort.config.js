@@ -1,6 +1,6 @@
 const confirmENV=(e)=>{
     // console.log(e,process.env[e],typeof process.env[e])
-    return process.env[e].trim();//fix the set more space bug
+    return process.env[e]&&process.env[e].trim();//fix the set more space bug
 }
 module.exports={
     //总价排序
