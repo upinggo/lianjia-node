@@ -1,2 +1,2 @@
 # lianjia-node
-the Reptile of lianjia to get the info about shanghaihouse
+the bots for lianjia to get the info about the houses of SHANGHAI
